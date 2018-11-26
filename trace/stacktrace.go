@@ -1,4 +1,4 @@
-package errorex
+package trace
 
 import (
 	"bytes"
@@ -8,7 +8,8 @@ import (
 
 const maxStackTrace = 40
 
-func GetStackTrace(min int) string {
+// GetStack gets the stack trace
+func GetStack(min int) string {
 	var buffer bytes.Buffer
 	_, err := buffer.WriteString(fmt.Sprintf("Stacktrace:\n"))
 	if err != nil {
