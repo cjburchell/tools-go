@@ -19,15 +19,12 @@ pipeline{
                    stage('Vet') {
                        agent {
                            docker {
-                               image 'cjburchell/goci:1.13'
+                               image 'cjburchell/goci:1.14'
                                args '-v $WORKSPACE:$PROJECT_PATH'
                            }
                        }
                        steps {
                            script{
-                                   sh """go get github.com/nats-io/go-nats"""
-                                   sh """go get github.com/pkg/errors"""
-
                                    sh """go vet ./..."""
 
                                    def checkVet = scanForIssues tool: [$class: 'GoVet']
@@ -39,15 +36,12 @@ pipeline{
                    stage('Lint') {
                        agent {
                            docker {
-                               image 'cjburchell/goci:1.13'
+                               image 'cjburchell/goci:1.14'
                                args '-v $WORKSPACE:$PROJECT_PATH'
                            }
                        }
                        steps {
                            script{
-                               sh """go get github.com/nats-io/go-nats"""
-                               sh """go get github.com/pkg/errors"""
-
                                sh """golint ./..."""
 
                                def checkLint = scanForIssues tool: [$class: 'GoLint']
