@@ -26,7 +26,3 @@ go-lint:
   script:
     - out=$(golint $(go list ./... | grep -v "vendor"))
     - if [ "$out" ]; then echo "$out"; exit 1; fi
-
-include:
-  - template: Security/License-Scanning.gitlab-ci.yml
-  - template: Dependency-Scanning.gitlab-ci.yml
